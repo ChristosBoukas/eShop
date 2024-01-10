@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eShop.Data.Contexts;
 
-public class EShopContext : DbContext
+public class EShopContext(DbContextOptions<EShopContext> builder) : DbContext (builder)
 {
     public DbSet<Category> Categories => Set<Category>();
     public DbSet<Filter> Filters => Set<Filter>();
@@ -61,7 +61,4 @@ public class EShopContext : DbContext
         #endregion
 
     }
-
-
-
 }
