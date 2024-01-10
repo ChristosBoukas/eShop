@@ -1,6 +1,6 @@
 ﻿namespace eShop.Data.Entities;
 
-public class Category : IEntity
+public class Color : IEntity
 {
     public int Id { get; set; }
     public string Name { get; set; }
