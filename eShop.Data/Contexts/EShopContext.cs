@@ -15,7 +15,6 @@ public class EShopContext(DbContextOptions<EShopContext> builder) : DbContext (b
     public DbSet<ProductSize> ProductSizes => Set<ProductSize>();
     public DbSet<ProductColor> ProductColors => Set<ProductColor>();
 
-
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
