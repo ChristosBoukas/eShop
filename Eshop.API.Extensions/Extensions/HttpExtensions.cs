@@ -1,4 +1,4 @@
-﻿namespace Eshop.API.Extensions.Extensions;
+﻿namespace eShop.API.Extensions.Extensions;
 
 public static class HttpExtensions
 {
@@ -8,12 +8,13 @@ public static class HttpExtensions
         var node = typeof(TEntity).Name.ToLower();
         //app.MapGet($"/api/{node}s/" + "{id}", HttpSingleAsync<TEntity, TGetDto>);
         app.MapGet($"/api/{node}s", HttpGetAsync<TEntity, TGetDto>);
-        //app.MapPost($"/api/{node}s", HttpPostAsync<TEntity, TPostDto>);
-        //app.MapPut($"/api/{node}s/" + "{id}", HttpPutAsync<TEntity, TPutDto>);
-        //app.MapDelete($"/api/{node}s/" + "{id}", HttpDeleteAsync<TEntity>);
+        /*app.MapPost($"/api/{node}s", HttpPostAsync<TEntity, TPostDto>);
+        app.MapPut($"/api/{node}s/" + "{id}", HttpPutAsync<TEntity, TPutDto>);
+        app.MapDelete($"/api/{node}s/" + "{id}", HttpDeleteAsync<TEntity>);*/
     }
 
-    public static async Task<IResult> HttpGetAsync<TEntity, TDto>() //(this IDbService db)
+    public static async Task<IResult> HttpGetAsync<TEntity, TDto>()
     where TEntity : class where TDto : class =>
-    Results.Ok(); //await db.GetAsync<TEntity, TDto>()
+    Results.Ok();
+
 }
