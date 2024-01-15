@@ -11,6 +11,18 @@ builder.Services.AddDbContext<EShopContext>(
         options.UseSqlServer(
             builder.Configuration.GetConnectionString("EShop_SoloConnection")));
 
+/**********
+ ** CORS Cross-Origin Resource Sharing**
+ **********/
+builder.Services.AddCors(policy =>
+{
+    policy.AddPolicy("CorsAllAccessPolicy", opt =>
+        opt.AllowAnyOrigin()
+           .AllowAnyHeader()
+           .AllowAnyMethod()
+    );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,6 +36,12 @@ app.UseHttpsRedirection();
 
 
 RegisterEndpoints();
+
+/************************
+ ** CORS Configuration **
+ ************************/
+app.UseCors("CorsAllAccessPolicy");
+
 app.Run();
 
 void RegisterEndpoints()
