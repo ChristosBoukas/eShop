@@ -22,9 +22,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+RegisterEndpoints();
 app.Run();
 
-void RegisterEndpoints(WebApplication app)
+void RegisterEndpoints()
 {
     app.AddEndpoint<Category, CategoryPostDTO, CategoryPutDTO, CategoryGetDTO>();
 }
