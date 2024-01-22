@@ -24,4 +24,10 @@ public class DbService : IDbService
         var entities = await _db.Set<TEntity>().ToListAsync();
         return _mapper.Map<List<TDto>>(entities);
     }
+
+    public virtual async Task<TDto> SingleAsync<TEntity, TDto>(int id) where TEntity : class, IEntity where TDto : class
+    {
+        var entity = await _db.Set<TEntity>().SingleOrDefaultAsync(e => e.Id == id);
+        return _mapper.Map<TDto>(entity);
+    }
 }
