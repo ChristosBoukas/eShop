@@ -41,7 +41,7 @@ public class DbService : IDbService
     public async Task<bool> SaveChangesAsync() => await _db.SaveChangesAsync() >= 0;
 
     public void Update<TEntity, TDto>(TDto dto)
-where TEntity : class, IEntity where TDto : class
+    where TEntity : class, IEntity where TDto : class
     {
         // Note that this method isn't asynchronous because Update modifies
         // an already exisiting object in memory, which is very fast.
@@ -63,5 +63,21 @@ where TEntity : class, IEntity where TDto : class
         catch { return false; }
 
         return true;
+    }
+
+    public bool Delete<TEntity, TDto>(TDto dto)
+    where TEntity : class where TDto : class
+    {
+        try
+        {
+            var entity = _mapper.Map<TEntity>(dto);
+            if (entity is null) return false;
+            _db.Remove(entity);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 }
