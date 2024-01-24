@@ -11,6 +11,7 @@ public class CategoryPutDTO : CategoryPostDTO
 public class CategoryGetDTO : CategoryPutDTO
 {
     //public List<FilterGetDTO>? Filters { get; set; }
+    public List<ProductGetDTO>? Products { get; set; }
 }
 
 public class CategorySmallGetDTO : CategoryPutDTO

@@ -80,4 +80,21 @@ public class DbService : IDbService
             return false;
         }
     }
+
+    public void IncludeNavigationsFor<TEntity>() where TEntity : class
+    {   // Skip Navigation Properties are used for many-to-many
+        // relationsips (List or ICollection) and Navigation Properties
+        // are used for one-to-many relationsips.
+        var propertyNames = _db.Model.FindEntityType(typeof(TEntity))?.GetNavigations().Select(e => e.Name);
+        var navigationPropertyNames = _db.Model.FindEntityType(typeof(TEntity))?.GetSkipNavigations().Select(e => e.Name);
+
+        if (propertyNames is not null)
+            foreach (var name in propertyNames)
+                _db.Set<TEntity>().Include(name).Load();
+
+        if (navigationPropertyNames is not null)
+            foreach (var name in navigationPropertyNames)
+                _db.Set<TEntity>().Include(name).Load();
+    }
+
 }
