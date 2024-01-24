@@ -56,6 +56,18 @@ void RegisterEndpoints()
 {
     //app.AddEndpoint<ProductCategory, ProductCategoryDTO>();
     app.AddEndpoint<Category, CategoryPostDTO, CategoryPutDTO, CategoryGetDTO>();
+    /*app.MapGet($"/api/categorieswithdata", async (IDbService db) =>
+{
+    try
+    {
+        return Results.Ok(await ((CategoryDbService)db).GetCategoriesWithAllRelatedDataAsync());
+    }
+    catch
+    {
+    }
+
+    return Results.BadRequest($"Couldn't get the requested products of type {typeof(Product).Name}.");
+});*/
 }
 
 void RegisterServices()
