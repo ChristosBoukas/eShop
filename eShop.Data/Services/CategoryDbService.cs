@@ -8,8 +8,8 @@ public class CategoryDbService(EShopContext db, IMapper mapper) : DbService(db, 
 {
     public override async Task<List<TDto>> GetAsync<TEntity, TDto>()
     {
-        IncludeNavigationsFor<Filter>();
-        IncludeNavigationsFor<Product>();
+        //IncludeNavigationsFor<Filter>();
+        //IncludeNavigationsFor<Product>();
         var result = await base.GetAsync<TEntity, TDto>();
         return result;
     }
