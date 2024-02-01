@@ -34,18 +34,34 @@ h1:focus {
 
 
 
-.bi.bi-cart {
-    font-size: 10.5rem !important;
-}
+/*.bi.bi-cart {
+    font-size: 1.5rem !important;
+}*/
 
-header div img{
-    height: 37px;
+header div img, dropdown .btn, header button {
+    height: 60px;
 }
 
 .search-width{
     width: 25%;
 }
 
-.dropdown .btn{
-    height: 37px;
+#cart-button {
+    height: 60px;
+    width: 60px;
 }
+
+.cart-count {
+    top: 0;
+    right: 0;
+    padding: 2px 5px;
+    line-height: 1;
+    margin-top: -10px;
+    margin-right: -8px;
+    font-size: 9pt;
+    font-family: 'Trebuchet MS'
+}
+
+/*.dropdown .btn{
+    height: 37px;
+}*/
