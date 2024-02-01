@@ -37,3 +37,15 @@ h1:focus {
 .bi.bi-cart {
     font-size: 10.5rem !important;
 }
+
+header div img{
+    height: 37px;
+}
+
+.search-width{
+    width: 25%;
+}
+
+.dropdown .btn{
+    height: 37px;
+}
