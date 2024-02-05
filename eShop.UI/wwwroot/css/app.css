@@ -62,6 +62,25 @@ nav a img{
     font-family: 'Trebuchet MS'
 }
 
-/*.dropdown .btn{
+.carousel.slide {
+    width: 50%;
+}
+
+/*.product-card {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}*/
+
+.product-card-list:first-child {
+    margin-left: 0rem;
+}
+
+
+.product-card-list:last-child {
+        margin-right: 0rem;
+ }
+
+/*
+.dropdown .btn{
     height: 37px;
 }*/

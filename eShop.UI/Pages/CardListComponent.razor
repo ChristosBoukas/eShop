@@ -1,0 +1,15 @@
+﻿<div class="d-flex w-75 mx-auto my-3 product-card-list">
+    @foreach (var card in Cards)
+    {
+        <CardComponent Card="card" />
+    }
+</div>
+
+@code {
+    List<ProductCard> Cards = new()
+    {
+        new ProductCard{ Image = "images/images/model1.png", Heading = "Product 1" },
+        new ProductCard{ Image = "images/images/model2.png", Heading = "Product 2" },
+        new ProductCard{ Image = "images/images/model3.png", Heading = "Product 3" }
+    };
+}
