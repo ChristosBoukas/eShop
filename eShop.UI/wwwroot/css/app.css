@@ -80,7 +80,13 @@ nav a img{
         margin-right: 0rem;
  }
 
-/*
+@media screen and (max-width: 470px) {
+    #aside-menu, #viewport {
+        height: auto !important;
+        flex-direction: column;
+    }
+
+    /*
 .dropdown .btn{
     height: 37px;
 }*/
