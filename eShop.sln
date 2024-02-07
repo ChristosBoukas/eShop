@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.Extensions", "Esh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.DTO", "eShop.API.DTO\eShop.API.DTO.csproj", "{298FDDC1-D53B-4D12-A007-F1B259434C78}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI_Legacy", "eShop.UI\eShop.UI_Legacy.csproj", "{8339364C-B31B-44A4-A45A-D479F7FFCA2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI", "eShop.UI\eShop.UI.csproj", "{8339364C-B31B-44A4-A45A-D479F7FFCA2A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.Product", "eShop.API.Product\eShop.API.Product.csproj", "{FC392384-5C6A-4262-9AC7-161CFF11FB95}"
 EndProject
