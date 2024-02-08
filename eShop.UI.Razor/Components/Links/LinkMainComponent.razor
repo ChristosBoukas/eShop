@@ -1,6 +1,15 @@
 ﻿@using eShop.UI.Models.Links
-<h3>LinkMainComponent</h3>
+
+<article>
+    <div class="bg-primary">@LinkGroup?.Name</div>
+    <div>
+        @foreach (var link in LinkGroup!.LinkOptions)
+        {
+            <LinkComponent LinkOption="link"/>
+        }
+    </div>
+</article>
 
 @code {
-    [Parameter] public LinkGroup? Linkgroup { get; set; }
+    [Parameter] public LinkGroup? LinkGroup { get; set; }
 }
