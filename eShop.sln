@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.UI_Legacy", "eShop.UI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eShop.API.Product", "eShop.API.Product\eShop.API.Product.csproj", "{FC392384-5C6A-4262-9AC7-161CFF11FB95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.UI.Razor", "eShop.UI.Razor\eShop.UI.Razor.csproj", "{BE24C97E-596D-43EA-AAC3-1E2FF2E82978}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShop.BlazorEmpty.UI", "eShop.BlazorEmpty.UI\eShop.BlazorEmpty.UI.csproj", "{A5B47B36-9378-44F8-A568-40D02ADE32A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{FC392384-5C6A-4262-9AC7-161CFF11FB95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC392384-5C6A-4262-9AC7-161CFF11FB95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC392384-5C6A-4262-9AC7-161CFF11FB95}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BE24C97E-596D-43EA-AAC3-1E2FF2E82978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE24C97E-596D-43EA-AAC3-1E2FF2E82978}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE24C97E-596D-43EA-AAC3-1E2FF2E82978}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE24C97E-596D-43EA-AAC3-1E2FF2E82978}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B47B36-9378-44F8-A568-40D02ADE32A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B47B36-9378-44F8-A568-40D02ADE32A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B47B36-9378-44F8-A568-40D02ADE32A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B47B36-9378-44F8-A568-40D02ADE32A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
