@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eShop.UI.Models\eShop.UI.Models.csproj" />
+    <ProjectReference Include="..\eShop.UI.Razor\eShop.UI.Razor.csproj" />
   </ItemGroup>
 
 </Project>
