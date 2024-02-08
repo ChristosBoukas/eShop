@@ -11,6 +11,10 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eShop.UI.Models\eShop.UI.Models.csproj" />
+  </ItemGroup>
+
 
 
 </Project>
