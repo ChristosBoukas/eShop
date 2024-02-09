@@ -7,10 +7,14 @@
 </aside>
 
 @code {
+    [Parameter] public EventCallback OnChange { get; set; }
 
     void OnAsideCallBack(int id)
     {
-
+        if (OnChange.HasDelegate)
+        {
+            OnChange.InvokeAsync(id);
+        }
     }
 
     List<LinkGroup> CategoryLinkGroups { get; set; } = new()
