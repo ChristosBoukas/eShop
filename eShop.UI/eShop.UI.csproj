@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\eShop.UI.Http\eShop.UI.Http.csproj" />
     <ProjectReference Include="..\eShop.UI.Models\eShop.UI.Models.csproj" />
   </ItemGroup>
 
