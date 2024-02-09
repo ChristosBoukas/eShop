@@ -13,9 +13,11 @@
 
 @code {
     [Parameter] public LinkOption? LinkOption { get; set; }
+    [Parameter] public EventCallback<int> OnLinkClick { get; set; }
 
     void OnClick()
     {
-        
+        if (OnLinkClick.HasDelegate && LinkOption is not null)
+            OnLinkClick.InvokeAsync(LinkOption.Id);
     }
 }
