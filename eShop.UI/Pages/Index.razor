@@ -1,12 +1,13 @@
 ﻿@page "/"
+@inject UIService Service;
 
 <NavComponent />
 
 <div id="viewport" class="d-flex vh-100">
-
-    <AsideComponent OnChange="OnChange"/>
-    <ProductComponent />
-
+    <CascadingValue Value="Service" Name="Service">
+        <AsideComponent OnChange="OnChange" />
+        <ProductComponent />
+    </CascadingValue>
 </div>
 
 @code{
