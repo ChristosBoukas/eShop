@@ -1,4 +1,6 @@
-﻿namespace eShop.UI.Http.Clients;
+﻿using System.Text.Json;
+
+namespace eShop.UI.Http.Clients;
 
 public class CategoryHttpClient
 {
@@ -11,4 +13,22 @@ public class CategoryHttpClient
         _httpClient.BaseAddress = new Uri($"{_baseAdress}categorys");
     }
 
+    public async Task<List<CategoryGetDTO>> GetCategoriesAsync()
+    {
+        try
+        {
+            using HttpResponseMessage response = await _httpClient.GetAsync("");
+            response.EnsureSuccessStatusCode();
+
+            var result = JsonSerializer.Deserialize<List<CategoryGetDTO>>(await response.Content.ReadAsStreamAsync(),
+            new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return result ?? [];
+
+        }
+        catch (Exception)
+        {
+            return [];
+        }
+    }
 }

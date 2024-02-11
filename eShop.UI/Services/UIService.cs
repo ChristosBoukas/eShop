@@ -1,6 +1,6 @@
 ﻿namespace eShop.UI.Services;
 
-public class UIService(CategoryHttpClient categoryHttp)
+public class UIService(CategoryHttpClient categoryHttp, IMapper mapper)
 {
     List<CategoryGetDTO> Categories { get; set; } = [];
 
@@ -9,15 +9,22 @@ public class UIService(CategoryHttpClient categoryHttp)
         new LinkGroup
         {
             Name = "Categories"
-            ,
-            LinkOptions = new(){
-                new LinkOption { Id = 1, Name = "Women", IsSelected = true },
-                new LinkOption { Id = 2, Name = "Men", IsSelected = false },
-                new LinkOption { Id = 3, Name = "Children", IsSelected = false }
-            }
+            //,
+            //LinkOptions = new(){
+            //    new LinkOption { Id = 1, Name = "Women", IsSelected = true },
+            //    new LinkOption { Id = 2, Name = "Men", IsSelected = false },
+            //    new LinkOption { Id = 3, Name = "Children", IsSelected = false }
+            //}
         }
     ];
 
     public int CurrentCategoryId { get; set; }
+
+    public async Task GetLinkGroup()
+    {
+        var categories = await categoryHttp.GetCategoriesAsync();
+        CategoryLinkGroups[0].LinkOptions = mapper.Map<List<LinkOption>>(Categories);
+        var linkOption = CategoryLinkGroups[0].LinkOptions.FirstOrDefault();
+    }
 
 }
