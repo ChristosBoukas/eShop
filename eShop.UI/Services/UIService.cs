@@ -22,7 +22,7 @@ public class UIService(CategoryHttpClient categoryHttp, IMapper mapper)
 
     public async Task GetLinkGroup()
     {
-        var categories = await categoryHttp.GetCategoriesAsync();
+        Categories = await categoryHttp.GetCategoriesAsync();
         CategoryLinkGroups[0].LinkOptions = mapper.Map<List<LinkOption>>(Categories);
         var linkOption = CategoryLinkGroups[0].LinkOptions.FirstOrDefault();
     }
