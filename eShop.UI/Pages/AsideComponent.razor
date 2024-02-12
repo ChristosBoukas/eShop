@@ -10,11 +10,12 @@
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
 
-    void OnAsideCallBack(int id)
+    async Task OnAsideCallBack(int id)
     {
-        if (OnChange.HasDelegate)
+        if (OnChange.HasDelegate && Service is not null)
         {
-            OnChange.InvokeAsync(id);
+            await Service.OnCategoryLinkClick(id);
+            await OnChange.InvokeAsync(id);
         }
     }
 

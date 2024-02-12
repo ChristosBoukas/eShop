@@ -1,4 +1,6 @@
-﻿namespace eShop.Data.Services;
+﻿using System.Linq.Expressions;
+
+namespace eShop.Data.Services;
 
 public class DbService : IDbService
 {
@@ -19,6 +21,13 @@ public class DbService : IDbService
         var entities = await _db.Set<TEntity>().ToListAsync();
         return _mapper.Map<List<TDto>>(entities);
     }
+
+    public IQueryable<TEntity> GetAsync<TEntity>(
+        Expression<Func<TEntity, bool>> expression)
+        where TEntity : class
+        {
+            return _db.Set<TEntity>().Where(expression);
+        }
 
     public virtual async Task<TDto> SingleAsync<TEntity, TDto>(int id) where TEntity : class, IEntity where TDto : class
     {

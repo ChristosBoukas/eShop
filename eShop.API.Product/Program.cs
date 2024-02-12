@@ -59,6 +59,20 @@ void RegisterEndpoints()
     app.AddEndpoint<Size, SizePostDTO, SizePutDTO, SizeGetDTO>();
     app.AddEndpoint<ProductSeason, ProductSeasonDTO>();
     app.AddEndpoint<Season, SeasonPostDTO, SeasonPutDTO, SeasonGetDTO>();
+    app.MapGet($"/api/productsbycategory/" + "{categoryId}", async (IDbService db, int categoryId) =>
+    {
+        try
+        {
+            var result = await ((ProductDbService)db).GetProductsByCategoryAsync(categoryId);
+            return Results.Ok(result);
+        }
+        catch
+        {
+        }
+
+        return Results.BadRequest($"Couldn't get the requested products of type {typeof(Product).Name}.");
+    });
+
     /*app.MapGet($"/api/categorieswithdata", async (IDbService db) =>
     {
         try
@@ -86,6 +100,7 @@ void ConfigureAutoMapper()
         cfg.CreateMap<Product, ProductPostDTO>().ReverseMap();
         cfg.CreateMap<Product, ProductPutDTO>().ReverseMap();
         cfg.CreateMap<Product, ProductGetDTO>().ReverseMap();
+        cfg.CreateMap<ProductCategory, ProductCategoryDTO>().ReverseMap();
         //cfg.CreateMap<Product, ProductSmallGetDTO>().ReverseMap();
         cfg.CreateMap<Color, ColorPostDTO>().ReverseMap();
         cfg.CreateMap<Color, ColorPutDTO>().ReverseMap();

@@ -5,13 +5,29 @@ public class ProductDbService(EShopContext db, IMapper mapper) : DbService(db, m
     public override async Task<List<TDto>> GetAsync<TEntity, TDto>()
     {
         //IncludeNavigationsFor<Filter>();
-        IncludeNavigationsFor<Color>();
-        IncludeNavigationsFor<Category>();
-        IncludeNavigationsFor<Size>();
-        IncludeNavigationsFor<Brand>();
-        IncludeNavigationsFor<Season>();
+        //IncludeNavigationsFor<Color>();
+        //IncludeNavigationsFor<Category>();
+        //IncludeNavigationsFor<Size>();
+        //IncludeNavigationsFor<Brand>();
+        //IncludeNavigationsFor<Season>();
 
         var result = await base.GetAsync<TEntity, TDto>();
         return result;
+    }
+
+    public async Task<List<ProductGetDTO>> GetProductsByCategoryAsync(int categoryId)
+    {
+        IncludeNavigationsFor<Color>();
+        IncludeNavigationsFor<Size>();
+        var productIds = GetAsync<ProductCategory>(pc => pc.CategoryId.Equals(categoryId))
+            .Select(pc => pc.ProductId);
+        var products = await GetAsync<Product>(p => productIds.Contains(p.Id)).ToListAsync();
+        return MapList<Product, ProductGetDTO>(products);
+    }
+    public List<TDto> MapList<TEntity, TDto>(List<TEntity> entities)
+    where TEntity : class
+    where TDto : class
+    {
+        return mapper.Map<List<TDto>>(entities);
     }
 }
