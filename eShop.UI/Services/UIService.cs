@@ -38,6 +38,6 @@ public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient produc
     }
 
     public async Task GetProductsAsync() =>
-    Products = await productHttp.GetProductsAsync(CurrentCategoryId);
+        Products = await productHttp.GetProductsAsync(CurrentCategoryId);
 
 }
