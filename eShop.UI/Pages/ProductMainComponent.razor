@@ -11,11 +11,31 @@
                         <h5 class="card-title">@product.Name</h5>
                         <p class="card-text">@product.Description.Truncate(50)</p>
                     </div>
-
                 </div>
             </div>
             <div class="row card-footer g-0">
-                Card footer
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary btn-radio" for="btnradio1">S</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">M</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3">L</label>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="color-@product.Id" id="color-@product.Id-1"
+                           autocomplete="off">
+                    <label class="btn btn-sm btn-outline-primary"
+                           style="background-color:#FFF; color: #000"
+                           for="color-@product.Id-1"><i class="bi-check"></i></label>
+                    <input type="radio" class="btn-check" name="color-@product.Id" id="color-@product.Id-2"
+                           autocomplete="off">
+                    <label class="btn btn-sm btn-outline-primary"
+                           style="background-color:blueviolet; color: #FFF"
+                           for="color-@product.Id-2"><i class="bi-check"></i></label>
+            </div>
             </div>
         </div>
         }

@@ -80,6 +80,14 @@ nav a img {
     margin-right: 0rem;
 }
 
+.btn-group {
+    width: 0px !important;
+}
+
+.btn-radio {
+    width: 45px;
+}
+
 @media screen and (max-width: 470px) {
     #aside-menu, #viewport {
         height: auto !important;
