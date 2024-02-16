@@ -13,8 +13,8 @@
                     </div>
                 </div>
             </div>
-            <div class="row card-footer g-0">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+            <div class="d-flex card-footer bg-white g-0 justify-content-start">
+                <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
                     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
                     <label class="btn btn-outline-primary btn-radio" for="btnradio1">S</label>
 
@@ -36,6 +36,9 @@
                            style="background-color:blueviolet; color: #FFF"
                            for="color-@product.Id-2"><i class="bi-check"></i></label>
             </div>
+
+                <button class="btn btn-sm btn-success" @onclick="AddToCart"><i class="bi-cart"></i></button>
+
             </div>
         </div>
         }
@@ -45,4 +48,6 @@
 @code {
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
+
+    void AddToCart() { }
 }
