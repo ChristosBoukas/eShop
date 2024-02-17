@@ -1,13 +1,18 @@
-﻿namespace eShop.API.DTO;
+﻿using eShop.Data.Shared.Enums;
+
+namespace eShop.API.DTO;
 public class ColorPostDTO
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
+    public OptionType OptionType { get; set; }
+    public string TextColor { get; set; } = string.Empty;
+    public string BGColor { get; set; } = string.Empty;
 }
-public class ColorPutDTO : ProductPostDTO
+public class ColorPutDTO : ColorPostDTO
 {
     public int Id { get; set; }
 }
-public class ColorGetDTO : ProductPutDTO
+public class ColorGetDTO : ColorPutDTO
 {
-    //public List<FilterGetDTO>? Filters { get; set; }
+    public bool IsSelected { get; set; }
 }
