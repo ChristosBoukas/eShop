@@ -32,8 +32,8 @@
                         <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
                                        autocomplete="off">
-                                <label class="btn btn-sm btn-outline-primary"
-                                       style="background-color:#FFF; color: #000"
+                                <label class="btn btn-sm btn-outline-primary"color.textColor
+                                   style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor)"
                                        for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
                         </div>
                     }
