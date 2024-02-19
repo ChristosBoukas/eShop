@@ -12,4 +12,5 @@ public class SizePutDTO : SizePostDTO
 }
 public class SizeGetDTO : SizePutDTO
 {
+    public bool IsSelected { get; set; }
 }

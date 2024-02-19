@@ -16,11 +16,15 @@
             <div class="d-flex card-footer bg-white g-0 justify-content-start">
                 @if (product.Sizes!.Count > 0)
                 {
-                    <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                         @foreach (var size in product.Sizes)
                         {
-                            <input type="radio" class="btn-check" name="btnradio" id="size-@product.Id-@size.Id" autocomplete="off" checked>
-                            <label class="btn btn-outline-primary btn-radio" for="size-@product.Id-@size.Id">@size.Name.ToUpper()</label>
+                            <input type="radio" class="btn-check" name="btnradio"
+                                   id="size-@product.Id-@size.Id"
+                                   @onclick="() => OnSizeClick(product, size)"
+                                   autocomplete="off" checked>
+                            <label class="btn btn-outline-primary btn-radio"
+                                   for="size-@product.Id-@size.Id">@size.Name.ToUpper()</label>
                         }
                     </div>
                 }
@@ -31,10 +35,10 @@
                     {
                         <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
                             <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
-                                       autocomplete="off">
-                                <label class="btn btn-sm btn-outline-primary"color.textColor
+                                   autocomplete="off" @onclick="() => OnColorClick(product, color)">
+                            <label class="btn btn-sm btn-outline-primary"
                                    style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor)"
-                                       for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
+                                   for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
                         </div>
                     }
                 }
@@ -51,5 +55,28 @@
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
 
-    void AddToCart() { }
+    void OnColorClick(ProductGetDTO product, ColorGetDTO color)
+    {
+        product.Colors!.ForEach(c => c.IsSelected = false);
+        color.IsSelected = true;
+    }
+
+    /*void OnColorClick1(int productId, int colorId)
+    {
+    var product = Service!.Products.Single(p => p.Id == productId);
+    product.Colors!.ForEach(c => c.IsSelected = false);
+    var color = product.Colors.Single(c => c.Id == colorId);
+    color.IsSelected = true;
+    }*/
+
+    void OnSizeClick(ProductGetDTO product, SizeGetDTO size)
+    {
+        product.Sizes!.ForEach(s => s.IsSelected = false);
+        size.IsSelected = true;
+    }
+
+    void AddToCart()
+    {
+        
+    }
 }
