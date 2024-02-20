@@ -88,6 +88,10 @@ nav a img {
     width: 45px;
 }
 
+.modal-body img {
+    max-height: 153px !important;
+}
+
 @media screen and (max-width: 470px) {
     #aside-menu, #viewport {
         height: auto !important;
