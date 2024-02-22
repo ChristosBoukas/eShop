@@ -10,7 +10,7 @@
                 {
                     @foreach(var item in CartItems)
                     {
-                        <CartItemComponent CartItem="item"/>              
+                        <CartItemComponent OnRemoveItem="OnRemoveItem" CartItem="item"/>              
                     }
                 }
             </div>
@@ -26,4 +26,11 @@
 
 @code {
     [Parameter] public List<ProductGetDTO>? CartItems { get; set; }
+    [Parameter] public EventCallback<ProductGetDTO?> OnRemoveCartItem { get; set; }
+
+    void OnRemoveItem(ProductGetDTO? cartItem)
+    {
+        if (OnRemoveCartItem.HasDelegate)
+            OnRemoveCartItem.InvokeAsync(cartItem);
+    }
 }

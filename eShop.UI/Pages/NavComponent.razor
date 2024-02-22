@@ -23,13 +23,13 @@
                         class="btn btn-outline-success rounded-0">
                     <i class="bi bi-cart"></i>
                 </button>
-                <div class="cart-count bg-danger text-white rounded-circle position-absolute">3</div>
+                <div class="cart-count bg-danger text-white rounded-circle position-absolute">@UICartService!.CartItems.Count</div>
             </div>
             <div></div>
         </div>
     </div>
 </nav>
-<CartComponent CartItems="@UICartService.CartItems"/>
+<CartComponent OnRemoveCartItem="OnRemoveCartItem" CartItems="@UICartService.CartItems"/>
 
 @code {
     [Parameter] public UIService? UICartService { get; set; }
@@ -39,4 +39,9 @@
         UICartService!.CartItems = await UICartService!.ReadStorage<List<ProductGetDTO>>("CartItems");
     }
 
+    async Task OnRemoveCartItem(ProductGetDTO? cartItem)
+    {
+        UICartService!.CartItems.Remove(cartItem);
+        await UICartService!.SaveToStorage("CartITems", UICartService!.CartItems);
+    }
 }
