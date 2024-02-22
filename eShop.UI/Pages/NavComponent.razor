@@ -29,8 +29,14 @@
         </div>
     </div>
 </nav>
-<CartComponent />
+<CartComponent CartItems="@UICartService.CartItems"/>
 
 @code {
+    [Parameter] public UIService? UICartService { get; set; }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        UICartService!.CartItems = await UICartService!.ReadStorage<List<ProductGetDTO>>("CartItems");
+    }
 
 }

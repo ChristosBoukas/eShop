@@ -6,7 +6,13 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <CartItemComponent />
+                @if(CartItems is not null)
+                {
+                    @foreach(var item in CartItems)
+                    {
+                        <CartItemComponent CartItem="item"/>              
+                    }
+                }
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -19,5 +25,5 @@
 
 
 @code {
-
+    [Parameter] public List<ProductGetDTO>? CartItems { get; set; }
 }

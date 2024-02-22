@@ -1,5 +1,5 @@
 ﻿@using eShop.UI.Storage.Services
-@inject IStorageService Storage
+@* @inject IStorageService Storage *@
 
 
 <section class="d-flex flex-wrap">
@@ -84,9 +84,18 @@
         //TODO: Visa produkterna i shopping carten
         //TODO: Ta bort produkt från shopping cart
 
+        Service!.CartItems.Add(product);
+        await Service!.SaveToStorage("CartItems", Service!.CartItems);
+
         //await Storage.SetAsync("MyKey", product);
+        
+
+
         //var prod = await Storage.GetAsync<ProductGetDTO>("MyKey");
+        var prod = await Service!.ReadSingleStorage<ProductGetDTO>("MyKey");
+
         //await Storage.RemoveAsync("MyKey");
+        await Service!.RemoveFromStorage("MyKey");
 
 
         //var product = Service!.Products.Single(p => p.Id == id);

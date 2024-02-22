@@ -1,9 +1,9 @@
 ﻿<div class="d-flex">
-    <img src="images/images/product_1.png" />
+    <img src="@CartItem!.PictureURL" />
     <div class="d-flex flex-column ms-3">
         <div class="d-flex flex-column">
-            <h3>T-Shirt</h3>
-            <p>Description</p>
+            <h3>@CartItem!.Name</h3>
+            <p>@CartItem!.Description</p>
             <table class="table mb-0">
               <tbody>
                     <tr><td class="border-0 p-0">Size</td><td class="border-0 p-0"><div class="ms-2 badge text-bg-light rounded-0 fw-normal">M</div></td></tr>
@@ -21,5 +21,8 @@
 </div>
 
 @code {
+    [Parameter] public ProductGetDTO? CartItem { get; set; }
+
+
 
 }
