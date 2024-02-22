@@ -6,11 +6,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                @if(CartItems is not null)
+                @if (CartItems is not null)
                 {
-                    @foreach(var item in CartItems)
+                    @foreach (var item in CartItems)
                     {
-                        <CartItemComponent OnRemoveItem="OnRemoveItem" CartItem="item"/>              
+                        <CartItemComponent OnRemoveItem="OnRemoveItem" CartItem="item" />
                     }
                 }
             </div>

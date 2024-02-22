@@ -29,7 +29,7 @@
         </div>
     </div>
 </nav>
-<CartComponent OnRemoveCartItem="OnRemoveCartItem" CartItems="@UICartService.CartItems"/>
+<CartComponent OnRemoveCartItem="OnRemoveCartItem" CartItems="UICartService.CartItems" />
 
 @code {
     [Parameter] public UIService? UICartService { get; set; }
@@ -42,6 +42,6 @@
     async Task OnRemoveCartItem(ProductGetDTO? cartItem)
     {
         UICartService!.CartItems.Remove(cartItem);
-        await UICartService!.SaveToStorage("CartITems", UICartService!.CartItems);
+        await UICartService!.SaveToStorage("CartItems", UICartService!.CartItems);
     }
 }
