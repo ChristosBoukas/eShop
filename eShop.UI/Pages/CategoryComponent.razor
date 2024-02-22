@@ -1,0 +1,25 @@
+﻿@using eShop.UI.Models.Links
+
+<div class="dropdown mx-1">
+    <button class="@(LinkOption.IsSelected ? "btn btn-secondary" : "btn btn-outline-secondary")" type="button" data-bs-toggle="dropdown" aria-expanded="false" @onclick="OnCategoryTitleClicked">
+        @LinkOption?.Name;
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Action</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+
+
+
+@code {
+    [Parameter] public LinkOption? LinkOption { get; set; }
+    [Parameter] public EventCallback<int> OnTitleIsClicked { get; set; }
+
+    void OnCategoryTitleClicked()
+    {
+        if (OnTitleIsClicked.HasDelegate && LinkOption is not null)
+            OnTitleIsClicked.InvokeAsync(LinkOption.Id);
+    }
+}

@@ -1,0 +1,21 @@
+﻿@page "/"
+@inject UIService Service;
+
+<CascadingValue Value="Service" Name="Service">
+    <NavComponentV2 OnChange="OnChange" />
+
+</CascadingValue>
+
+<div id="viewport" class="d-flex vh-100">
+    <CascadingValue Value="Service" Name="Service">
+
+    </CascadingValue>
+</div>
+
+@code {
+    void OnChange()
+    {
+
+    }
+
+}

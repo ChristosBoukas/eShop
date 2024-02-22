@@ -1,0 +1,62 @@
+﻿<nav class="navbar d-flex mx-3">
+
+    <div class="d-flex justify-content-start">
+        @* To the left *@
+        <a class="navbar-brand" href="#"><img src="images/Ikea.png" alt="logo2" /></a>
+        @foreach (var group in Service!.CategoryLinkGroups)
+        {
+            <CategoryTitleComponent LinkGroup="group" OnTitleUpdate="OnTitlePressedCallBack" />
+        }
+    </div>
+
+    <div class="d-flex justify-content-end search-width">
+        @* To the right *@
+
+        <div class="input-group flex-nowrap me-1">
+            <span class="input-group-text rounded-0" id="addon-wrapping"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control rounded-0" placeholder="Search" aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+
+        <div class="d-flex">
+            <div class="position-relative">
+                <button id="cart-button" type="button" class="btn"><i class="bi bi-heart"></i></button>
+            </div>
+
+            <div class="position-relative">
+                <button id="cart-button" type="button" class="btn"><i class="bi bi-cart"></i></button>
+                @* <div class="cart-count bg-danger text-white rounded-circle position-absolute">3</div> *@
+            </div>
+
+            <div></div>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <hr>
+</div>
+
+
+@code {
+    [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
+    [Parameter] public EventCallback OnChange { get; set; }
+
+    async Task OnTitlePressedCallBack(int id)
+    {
+        if (OnChange.HasDelegate && Service is not null)
+        {
+            await Service.OnCategoryLinkClick(id);
+            await OnChange.InvokeAsync(id);
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Service is not null)
+        {
+            await Service.GetLinkGroup();
+            await OnChange.InvokeAsync();
+        }
+    }
+
+}
