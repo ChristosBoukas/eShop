@@ -88,15 +88,14 @@
         await Service!.SaveToStorage("CartItems", Service!.CartItems);
 
         //await Storage.SetAsync("MyKey", product);
-        
-
+        //await Service!.SaveToStorage("MyKey", product);
 
         //var prod = await Storage.GetAsync<ProductGetDTO>("MyKey");
-        var prod = await Service!.ReadSingleStorage<ProductGetDTO>("MyKey");
+        //var prod = await Service!.ReadSingleStorage<ProductGetDTO>("MyKey");
+
 
         //await Storage.RemoveAsync("MyKey");
-        await Service!.RemoveFromStorage("MyKey");
-
+        //await Service!.RemoveFromStorage("MyKey");
 
         //var product = Service!.Products.Single(p => p.Id == id);
     }
