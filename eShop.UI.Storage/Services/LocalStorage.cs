@@ -2,7 +2,7 @@
 
 namespace eShop.UI.Storage.Services;
 
-public class LocalStorage(ILocalStorageService localStorage) : IStorageService
+public class LocalStorageService(ILocalStorageService localStorage) : IStorageService
 {
     public async Task<T?> GetAsync<T>(string key) =>
         await localStorage.GetItemAsync<T>(key);

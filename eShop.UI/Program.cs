@@ -13,7 +13,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddSingleton<UIService>();
 builder.Services.AddBlazoredLocalStorageAsSingleton();
 //builder.Services.AddBlazoredSessionStorageAsSingleton()
-builder.Services.AddSingleton<IStorageService, LocalStorage>();
+builder.Services.AddSingleton<IStorageService, LocalStorageService>();
 builder.Services.AddHttpClient<CategoryHttpClient>();
 builder.Services.AddHttpClient<ProductHttpClient>();
 ConfigureAutoMapper();

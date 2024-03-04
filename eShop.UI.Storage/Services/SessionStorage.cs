@@ -2,7 +2,7 @@
 
 namespace eShop.UI.Storage.Services;
 
-public class SessionStorage(ISessionStorageService sessionStorage)
+public class SessionStorageService(ISessionStorageService sessionStorage)
     : IStorageService
 {
     public async Task<T?> GetAsync<T>(string key) =>

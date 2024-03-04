@@ -1,13 +1,11 @@
-﻿using eShop.UI.Storage.Services;
-using System.ComponentModel;
+﻿namespace eShop.UI.Services;
 
-namespace eShop.UI.Services;
-
-public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient productHttp, IMapper mapper, IStorageService storage)
+public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient productHttp, IMapper mapper, CartService cart) //IStorageService storage
 {
+    public CartService Cart { get; } = cart;
     List<CategoryGetDTO> Categories { get; set; } = [];
     public List<ProductGetDTO> Products { get; private set; } = [];
-    public List<ProductGetDTO> CartItems { get; set; } = [];
+    //public List<ProductGetDTO> CartItems { get; set; } = [];
     public List<LinkGroup> CategoryLinkGroups { get; private set; } =
     [
         new LinkGroup

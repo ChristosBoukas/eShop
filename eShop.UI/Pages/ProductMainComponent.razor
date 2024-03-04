@@ -3,54 +3,53 @@
 
 
 <section class="d-flex flex-wrap">
-        @foreach(var product in Service!.Products)
-        {
-        <div class="card mb-0" style="max-width: 540px;">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="@product.PictureURL" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">@product.Name</h5>
-                        <p class="card-text">@product.Description.Truncate(50)</p>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex card-footer bg-white g-0 justify-content-start">
-                @if (product.Sizes!.Count > 0)
-                {
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        @foreach (var size in product.Sizes)
-                        {
-                            <input type="radio" class="btn-check" name="btnradio"
-                                   id="size-@product.Id-@size.Id"
-                                   @onclick="() => OnSizeClick(product, size)"
-                                   autocomplete="off" checked>
-                            <label class="btn btn-outline-primary btn-radio"
-                                   for="size-@product.Id-@size.Id">@size.Name.ToUpper()</label>
-                        }
-                    </div>
-                }
-                @if (product.Colors!.Count > 0)
-                {
-                    @foreach (var color in product.Colors)
+    @foreach (var product in Service!.Products)
+    {
+
+        <div class="image-container m-2 bg-white">
+            <img src="@product.PictureURL" alt="Man Coat Image">
+            <h1 style="font-size: 20px; margin: 0;">@product.Name</h1>
+
+            <div class="d-flex justify-content-around">
+                <div class="d-flex flex-column py-2">
+                    @if (product.Sizes!.Count > 0)
                     {
-                        <div class="btn-group mx-2" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
-                                   autocomplete="off" @onclick="() => OnColorClick(product, color)">
-                            <label class="btn btn-sm btn-outline-primary"
-                                   style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor)"
-                                   for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
+                        <div class="btn-group btn-group-sm py-1" role="group" aria-label="Basic radio toggle button group">
+                            @foreach (var size in product.Sizes)
+                            {
+                                <input type="radio" class="btn-check" name="btnradio"
+                                       id="size-@product.Id-@size.Id"
+                                       @onclick="() => OnSizeClick(product, size)"
+                                       autocomplete="off" checked>
+                                <label class="btn btn-outline-primary btn-sm btn-radio"
+                                       style="color: black; border-color: black; font-size: 8px; padding: 2px 2px"
+                                       for="size-@product.Id-@size.Id">@size.Name.ToUpper()</label>
+                            }
                         </div>
                     }
-                }
 
-                <button class="btn btn-sm btn-success" @onclick="() => AddToCart(product)"><i class="bi-cart"></i></button>
+                    @if (product.Colors!.Count > 0)
+                    {
+                        <div class="d-flex flex-row py-1">
+                            @foreach (var color in product.Colors)
+                            {
+                                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                    <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
+                                           autocomplete="off" @onclick="() => OnColorClick(product, color)">
+                                    <label class="btn btn-sm btn-outline-dark"
+                                           style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor); font-size: 6px; padding: 4px 4px"
+                                           for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+
+                <button class="btn btn-sm btn-success bg-success border-secondary ms-2" style="margin-block: 15px;" @onclick="() => AddToCart(product)"><i class="bi-cart"></i></button>
 
             </div>
         </div>
-        }
+    }
 </section>
 
 
@@ -64,13 +63,6 @@
         color.IsSelected = true;
     }
 
-    /*void OnColorClick1(int productId, int colorId)
-    {
-    var product = Service!.Products.Single(p => p.Id == productId);
-    product.Colors!.ForEach(c => c.IsSelected = false);
-    var color = product.Colors.Single(c => c.Id == colorId);
-    color.IsSelected = true;
-    }*/
 
     void OnSizeClick(ProductGetDTO product, SizeGetDTO size)
     {
@@ -80,23 +72,9 @@
 
     async Task AddToCart(ProductGetDTO product)
     {
-        //TODO: Spara flera produkter till shopping cart
-        //TODO: Visa produkterna i shopping carten
-        //TODO: Ta bort produkt från shopping cart
 
         Service!.CartItems.Add(product);
         await Service!.SaveToStorage("CartItems", Service!.CartItems);
 
-        //await Storage.SetAsync("MyKey", product);
-        //await Service!.SaveToStorage("MyKey", product);
-
-        //var prod = await Storage.GetAsync<ProductGetDTO>("MyKey");
-        //var prod = await Service!.ReadSingleStorage<ProductGetDTO>("MyKey");
-
-
-        //await Storage.RemoveAsync("MyKey");
-        //await Service!.RemoveFromStorage("MyKey");
-
-        //var product = Service!.Products.Single(p => p.Id == id);
     }
 }
