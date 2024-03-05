@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Blazored.SessionStorage;
 using eShop.UI;
 using eShop.UI.Services;
 using eShop.UI.Storage.Services;
@@ -11,9 +12,13 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddSingleton<UIService>();
+builder.Services.AddSingleton<CartService>();
 builder.Services.AddBlazoredLocalStorageAsSingleton();
+builder.Services.AddBlazoredSessionStorageAsSingleton();
+builder.Services.AddSingleton<SessionStorageService>();
+builder.Services.AddSingleton<LocalStorageService>();
 //builder.Services.AddBlazoredSessionStorageAsSingleton()
-builder.Services.AddSingleton<IStorageService, LocalStorageService>();
+//builder.Services.AddSingleton<IStorageService, LocalStorageService>();
 builder.Services.AddHttpClient<CategoryHttpClient>();
 builder.Services.AddHttpClient<ProductHttpClient>();
 ConfigureAutoMapper();

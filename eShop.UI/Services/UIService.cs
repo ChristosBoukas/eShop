@@ -44,25 +44,25 @@ public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient produc
     public async Task GetProductsAsync() =>
         Products = await productHttp.GetProductsAsync(CurrentCategoryId);
 
-    public async Task<T> ReadStorage<T>(string key)// where T : class
-    {
-        //if (string.IsNullOrEmpty(key) || storage is null) return new T();
-        return await storage.GetAsync<T>(key);
-    }
-    public async Task<T> ReadSingleStorage<T>(string key)// where T : class
-    {
-        return await storage.GetAsync<T>(key);
-    }
+    //public async Task<T> ReadStorage<T>(string key)// where T : class
+    //{
+    //    //if (string.IsNullOrEmpty(key) || storage is null) return new T();
+    //    return await storage.GetAsync<T>(key);
+    //}
+    //public async Task<T> ReadSingleStorage<T>(string key)// where T : class
+    //{
+    //    return await storage.GetAsync<T>(key);
+    //}
 
-    public async Task SaveToStorage<T>(string key, T value)// where T : class
-    {
-        if (string.IsNullOrEmpty(key) || storage is null) return;
-        await storage.SetAsync<T>(key, value);
-    }
-    public async Task RemoveFromStorage(string key)// where T : class
-    {
-        if (string.IsNullOrEmpty(key) || storage is null) return;
-        await storage.RemoveAsync(key);
-    }
+    //public async Task SaveToStorage<T>(string key, T value)// where T : class
+    //{
+    //    if (string.IsNullOrEmpty(key) || storage is null) return;
+    //    await storage.SetAsync<T>(key, value);
+    //}
+    //public async Task RemoveFromStorage(string key)// where T : class
+    //{
+    //    if (string.IsNullOrEmpty(key) || storage is null) return;
+    //    await storage.RemoveAsync(key);
+    //}
 
 }

@@ -19,7 +19,7 @@
                             {
                                 <input type="radio" class="btn-check" name="btnradio"
                                        id="size-@product.Id-@size.Id"
-                                       @onclick="() => OnSizeClick(product, size)"
+                                       @onclick="() => Service.Cart.SelectSize(product, size)"
                                        autocomplete="off" checked>
                                 <label class="btn btn-outline-primary btn-sm btn-radio"
                                        style="color: black; border-color: black; font-size: 8px; padding: 2px 2px"
@@ -35,7 +35,7 @@
                             {
                                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                     <input type="radio" class="btn-check" name="color-@product.Id-@color.Id" id="color-@product.Id-@color.Id"
-                                           autocomplete="off" @onclick="() => OnColorClick(product, color)">
+                                           autocomplete="off" @onclick="() => Service.Cart.SelectColor(product, color)">
                                     <label class="btn btn-sm btn-outline-dark"
                                            style="background-color:#@color.BGColor; color:#@(color.IsSelected ? color.TextColor : color.BGColor); font-size: 6px; padding: 4px 4px"
                                            for="color-@product.Id-@color.Id"><i class="bi-check"></i></label>
@@ -45,7 +45,7 @@
                     }
                 </div>
 
-                <button class="btn btn-sm btn-success bg-success border-secondary ms-2" style="margin-block: 15px;" @onclick="() => AddToCart(product)"><i class="bi-cart"></i></button>
+                <button class="btn btn-sm btn-success bg-success border-secondary ms-2" style="margin-block: 15px;" @onclick="() => AddToCart()"><i class="bi-cart"></i></button>
 
             </div>
         </div>
@@ -56,25 +56,45 @@
 @code {
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
+    List<ProductGetDTO>? Products { get; set; }
 
-    void OnColorClick(ProductGetDTO product, ColorGetDTO color)
+    protected override void OnParametersSet()
     {
-        product.Colors!.ForEach(c => c.IsSelected = false);
-        color.IsSelected = true;
+        if (Service is not null)
+            Products = Service.Products;
     }
 
-
-    void OnSizeClick(ProductGetDTO product, SizeGetDTO size)
+    async Task AddToCart()
     {
-        product.Sizes!.ForEach(s => s.IsSelected = false);
-        size.IsSelected = true;
+        try
+        {
+            await Service.Cart.AddToCart();
+            await OnChange.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            // Display error message
+        }
     }
+    // void OnColorClick(ProductGetDTO product, ColorGetDTO color)
+    // {
+    //     product.Colors!.ForEach(c => c.IsSelected = false);
+    //     color.IsSelected = true;
+    // }
 
-    async Task AddToCart(ProductGetDTO product)
-    {
 
-        Service!.CartItems.Add(product);
-        await Service!.SaveToStorage("CartItems", Service!.CartItems);
+    // void OnSizeClick(ProductGetDTO product, SizeGetDTO size)
+    // {
+    //     product.Sizes!.ForEach(s => s.IsSelected = false);
+    //     size.IsSelected = true;
+    // }
 
-    }
+    // async Task AddToCart(ProductGetDTO product)
+    // {
+
+    //     Service!.CartItems.Add(product);
+    //     await Service!.SaveToStorage("CartItems", Service!.CartItems);
+
+    // }
+
 }

@@ -25,7 +25,7 @@
 
 
 @code {
-    [Parameter] public List<ProductGetDTO>? CartItems { get; set; }
+    [Parameter] public List<CartItemDTO>? CartItems { get; set; }
     [Parameter] public EventCallback<ProductGetDTO?> OnRemoveCartItem { get; set; }
 
     void OnRemoveItem(ProductGetDTO? cartItem)

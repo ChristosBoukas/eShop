@@ -26,7 +26,7 @@
                 <button id="cart-button" type="button"
                 data-bs-toggle="modal" data-bs-target="#cart"
                 class="btn"><i class="bi bi-cart"></i></button>
-                <div class="cart-count bg-danger text-white rounded-circle position-absolute">3</div>
+                <div class="cart-count bg-danger text-white rounded-circle position-absolute">@Cart?.CartItems.Count</div>
             </div>
 
             <div></div>
@@ -34,7 +34,7 @@
     </div>
 </nav>
 
-<CartComponent />
+<CartComponent Cart="Cart?.CartItems" OnRemoveItem="OnRemoveItem"></CartComponent>
 
 <div>
     <hr>
@@ -43,7 +43,17 @@
 
 @code {
     [CascadingParameter(Name = "Service")] public UIService? Service { get; set; }
+    [CascadingParameter(Name = "Cart")] public CartService? Cart { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
+
+
+    void OnRemoveItem(CartItemDTO item) => Cart?.RemoveFromCart(item);
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Cart is not null)
+            await Cart.GetCartItems();
+    }
 
     async Task OnTitlePressedCallBack(int id)
     {
