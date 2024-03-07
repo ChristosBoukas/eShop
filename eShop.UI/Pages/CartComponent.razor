@@ -26,9 +26,9 @@
 
 @code {
     [Parameter] public List<CartItemDTO>? CartItems { get; set; }
-    [Parameter] public EventCallback<ProductGetDTO?> OnRemoveCartItem { get; set; }
+    [Parameter] public EventCallback<CartItemDTO?> OnRemoveCartItem { get; set; }
 
-    void OnRemoveItem(ProductGetDTO? cartItem)
+    void OnRemoveItem(CartItemDTO? cartItem)
     {
         if (OnRemoveCartItem.HasDelegate)
             OnRemoveCartItem.InvokeAsync(cartItem);

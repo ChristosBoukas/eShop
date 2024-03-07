@@ -21,8 +21,8 @@
 </div>
 
 @code {
-    [Parameter] public ProductGetDTO? CartItem { get; set; }
-    [Parameter] public EventCallback<ProductGetDTO?> OnRemoveItem { get; set; }
+    [Parameter] public CartItemDTO? CartItem { get; set; }
+    [Parameter] public EventCallback<CartItemDTO?> OnRemoveItem { get; set; }
 
     void RemoveItem()
     {
