@@ -5,18 +5,11 @@ public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient produc
     public CartService Cart { get; } = cart;
     List<CategoryGetDTO> Categories { get; set; } = [];
     public List<ProductGetDTO> Products { get; private set; } = [];
-    //public List<ProductGetDTO> CartItems { get; set; } = [];
     public List<LinkGroup> CategoryLinkGroups { get; private set; } =
     [
         new LinkGroup
         {
             Name = "Categories"
-            //,
-            //LinkOptions = new(){
-            //    new LinkOption { Id = 1, Name = "Women", IsSelected = true },
-            //    new LinkOption { Id = 2, Name = "Men", IsSelected = false },
-            //    new LinkOption { Id = 3, Name = "Children", IsSelected = false }
-            //}
         }
     ];
 
@@ -43,26 +36,4 @@ public class UIService(CategoryHttpClient categoryHttp, ProductHttpClient produc
 
     public async Task GetProductsAsync() =>
         Products = await productHttp.GetProductsAsync(CurrentCategoryId);
-
-    //public async Task<T> ReadStorage<T>(string key)// where T : class
-    //{
-    //    //if (string.IsNullOrEmpty(key) || storage is null) return new T();
-    //    return await storage.GetAsync<T>(key);
-    //}
-    //public async Task<T> ReadSingleStorage<T>(string key)// where T : class
-    //{
-    //    return await storage.GetAsync<T>(key);
-    //}
-
-    //public async Task SaveToStorage<T>(string key, T value)// where T : class
-    //{
-    //    if (string.IsNullOrEmpty(key) || storage is null) return;
-    //    await storage.SetAsync<T>(key, value);
-    //}
-    //public async Task RemoveFromStorage(string key)// where T : class
-    //{
-    //    if (string.IsNullOrEmpty(key) || storage is null) return;
-    //    await storage.RemoveAsync(key);
-    //}
-
 }
