@@ -117,6 +117,9 @@ public static class HttpExtensions
         return Results.BadRequest($"Couldn't delete the {typeof(TEntity).Name} entity.");
     }
 
-
+    public static void ATestMethod()
+    {
+        
+    }
 
 }

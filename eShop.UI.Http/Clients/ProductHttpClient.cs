@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Xml.Linq;
 
 namespace eShop.UI.Http.Clients;
 
@@ -34,5 +35,25 @@ public class ProductHttpClient
         }
     }
 
+    public async Task<List<ProductGetDTO>> PostProduct()
+    {
+        try
+        {
+            // Use the relative path, not the base address here
+            string relativePath = $"/api/products";
+            using HttpResponseMessage response = await _httpClient.GetAsync(relativePath);
+            response.EnsureSuccessStatusCode();
+
+            var resultStream = await response.Content.ReadAsStreamAsync();
+            var result = await JsonSerializer.DeserializeAsync<List<ProductGetDTO>>(resultStream,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return result ?? [];
+        }
+        catch (Exception ex)
+        {
+            return [];
+        }
+    }
 
 }
