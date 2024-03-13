@@ -36,6 +36,7 @@ public class ProductHttpClient
         }
     }
 
+    #region Post Methods
     public async Task PostProduct(ProductPostDTO product)
     {
         try
@@ -81,5 +82,29 @@ public class ProductHttpClient
 
         }
     }
+
+    public async Task PostSize(SizePostDTO size)
+    {
+        try
+        {
+            // Serialize the DTO object to JSON
+            string jsonContent = JsonSerializer.Serialize(size);
+
+            // Create StringContent object with JSON data
+            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            //Use the relative path, not the base address here
+            string relativePath = $"/api/sizes";
+            using HttpResponseMessage response = await _httpClient.PostAsync(relativePath, content);
+            response.EnsureSuccessStatusCode();
+
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+    #endregion
 
 }

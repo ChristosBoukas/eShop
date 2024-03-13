@@ -19,6 +19,7 @@ public class UIServiceAdmin
 
     public ProductPostDTO? Product { get; set; }
     public ColorPostDTO? Color { get; set; }
+    public SizePostDTO? Size { get; set; }
 
     public async Task PostProduct(ProductPostDTO product)
     {
@@ -28,5 +29,10 @@ public class UIServiceAdmin
     public async Task PostColor(ColorPostDTO color)
     {
         await _productHttp.PostColor(color);
+    }
+
+    public async Task PostSize(SizePostDTO size)
+    {
+        await _productHttp.PostSize(size);
     }
 }
