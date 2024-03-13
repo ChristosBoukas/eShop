@@ -18,9 +18,15 @@ public class UIServiceAdmin
     }
 
     public ProductPostDTO? Product { get; set; }
+    public ColorPostDTO? Color { get; set; }
 
     public async Task PostProduct(ProductPostDTO product)
     {
         await _productHttp.PostProduct(product);
+    }
+
+    public async Task PostColor(ColorPostDTO color)
+    {
+        await _productHttp.PostColor(color);
     }
 }

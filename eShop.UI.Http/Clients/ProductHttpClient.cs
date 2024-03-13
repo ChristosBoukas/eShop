@@ -59,4 +59,27 @@ public class ProductHttpClient
         }
     }
 
+    public async Task PostColor(ColorPostDTO color)
+    {
+        try
+        {
+            // Serialize the DTO object to JSON
+            string jsonContent = JsonSerializer.Serialize(color);
+
+            // Create StringContent object with JSON data
+            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            //Use the relative path, not the base address here
+            string relativePath = $"/api/colors";
+            using HttpResponseMessage response = await _httpClient.PostAsync(relativePath, content);
+            response.EnsureSuccessStatusCode();
+
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
 }
