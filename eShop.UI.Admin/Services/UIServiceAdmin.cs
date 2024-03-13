@@ -21,18 +21,8 @@ public class UIServiceAdmin
     public ColorPostDTO? Color { get; set; }
     public SizePostDTO? Size { get; set; }
 
-    public async Task PostProduct(ProductPostDTO product)
+    public async Task PostDTO<TPostDTO>(TPostDTO inDTO) where TPostDTO : class
     {
-        await _productHttp.PostProduct(product);
-    }
-
-    public async Task PostColor(ColorPostDTO color)
-    {
-        await _productHttp.PostColor(color);
-    }
-
-    public async Task PostSize(SizePostDTO size)
-    {
-        await _productHttp.PostSize(size);
+        await _productHttp.PostDTO(inDTO);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using eShop.Data.Shared.Interfaces;
+using System.Text;
 using System.Text.Json;
 using System.Xml.Linq;
 
@@ -36,69 +37,25 @@ public class ProductHttpClient
         }
     }
 
-    #region Post Methods
-    public async Task PostProduct(ProductPostDTO product)
+    #region Post Method
+    public async Task PostDTO<TPostDTO>(TPostDTO inDTO) where TPostDTO : class
     {
         try
         {
+            var typeName = typeof(TPostDTO).Name;
+            var node = typeName.EndsWith("PostDTO") ? typeName.Substring(0, typeName.Length - 7) : typeName;
+            node = node.ToLower();
+
             // Serialize the DTO object to JSON
-            string jsonContent = JsonSerializer.Serialize(product);
+            string jsonContent = JsonSerializer.Serialize(inDTO);
 
             // Create StringContent object with JSON data
             StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
             //Use the relative path, not the base address here
-            string relativePath = $"/api/products";
+            string relativePath = $"/api/{node}s";
             using HttpResponseMessage response = await _httpClient.PostAsync(relativePath, content);
             response.EnsureSuccessStatusCode();
-
-
-        }
-        catch (Exception ex)
-        {
-            
-        }
-    }
-
-    public async Task PostColor(ColorPostDTO color)
-    {
-        try
-        {
-            // Serialize the DTO object to JSON
-            string jsonContent = JsonSerializer.Serialize(color);
-
-            // Create StringContent object with JSON data
-            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-            //Use the relative path, not the base address here
-            string relativePath = $"/api/colors";
-            using HttpResponseMessage response = await _httpClient.PostAsync(relativePath, content);
-            response.EnsureSuccessStatusCode();
-
-
-        }
-        catch (Exception ex)
-        {
-
-        }
-    }
-
-    public async Task PostSize(SizePostDTO size)
-    {
-        try
-        {
-            // Serialize the DTO object to JSON
-            string jsonContent = JsonSerializer.Serialize(size);
-
-            // Create StringContent object with JSON data
-            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-            //Use the relative path, not the base address here
-            string relativePath = $"/api/sizes";
-            using HttpResponseMessage response = await _httpClient.PostAsync(relativePath, content);
-            response.EnsureSuccessStatusCode();
-
-
         }
         catch (Exception ex)
         {
