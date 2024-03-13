@@ -1,7 +1,15 @@
 ﻿@page "/"
-@inject UIServiceAdmin service;
+@inject UIServiceAdmin AdminService;
 
-<button type="button" class="btn btn-secondary">Secondary</button>
 
-<h1>Hello, world!</h1>
+<CascadingValue Value="AdminService" Name="Service">
+    <ProductPost/>
+</CascadingValue>
 
+
+
+@code {
+     [CascadingParameter] public UIServiceAdmin? Service { get; set; }
+
+
+}

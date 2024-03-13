@@ -1,0 +1,40 @@
+﻿<h3>My Form</h3>
+
+<EditForm Model="@productPostDTO" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="property1">Name:</label>
+        <InputText id="property1" @bind-Value="@productPostDTO.Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="property2">Description:</label>
+        <InputText id="property2" @bind-Value="@productPostDTO.Description" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="property2">PictureURL:</label>
+        <InputText id="property2" @bind-Value="@productPostDTO.PictureURL" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</EditForm>
+
+@code {
+    private ProductPostDTO productPostDTO = new ProductPostDTO();
+    [CascadingParameter(Name = "Service")] public UIServiceAdmin Service { get; set; }
+
+    private async Task HandleValidSubmit()
+    {
+        if (Service != null)
+        {
+            await Service.PostProduct(productPostDTO);
+        }
+        else
+        {
+            // Handle the case where AdminService is null
+        }
+    }
+}

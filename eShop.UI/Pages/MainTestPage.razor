@@ -23,8 +23,7 @@
 </div> *@
 
 @code {
-    [CascadingParameter]
-    public UIService? Service { get; set; }
+    [CascadingParameter] public UIService? Service { get; set; }
 
     protected override void OnParametersSet() => Service = service;
 
