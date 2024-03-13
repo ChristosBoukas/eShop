@@ -37,7 +37,6 @@ public class ProductHttpClient
         }
     }
 
-    #region Post Method
     public async Task PostDTO<TPostDTO>(TPostDTO inDTO) where TPostDTO : class
     {
         try
@@ -62,6 +61,52 @@ public class ProductHttpClient
 
         }
     }
-    #endregion
 
+    public async Task GetDTO<TGetDTO>(TGetDTO inDTO) where TGetDTO : class
+    {
+        try
+        {
+            var typeName = typeof(TGetDTO).Name;
+            var node = typeName.EndsWith("GetDTO") ? typeName.Substring(0, typeName.Length - 6) : typeName;
+            node = node.ToLower();
+
+            //Use the relative path, not the base address here
+            string relativePath = $"/api/{node}s";
+            using HttpResponseMessage response = await _httpClient.GetAsync(relativePath);
+            response.EnsureSuccessStatusCode();
+
+            var resultStream = await response.Content.ReadAsStreamAsync();
+            var result = await JsonSerializer.DeserializeAsync<List<ProductGetDTO>>(resultStream,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
+    public async Task PutDTO<TPutDTO>(TPutDTO inDTO, int idToUpdate) where TPutDTO : class
+    {
+        try
+        {
+            var typeName = typeof(TPutDTO).Name;
+            var node = typeName.EndsWith("PutDTO") ? typeName.Substring(0, typeName.Length - 6) : typeName;
+            node = node.ToLower();
+
+            // Serialize the DTO object to JSON
+            string jsonContent = JsonSerializer.Serialize(inDTO);
+
+            // Create StringContent object with JSON data
+            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+            //Use the relative path, not the base address here
+            string relativePath = $"/api/{node}s/{idToUpdate}";
+            using HttpResponseMessage response = await _httpClient.PutAsync(relativePath, content);
+            response.EnsureSuccessStatusCode();
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
 }

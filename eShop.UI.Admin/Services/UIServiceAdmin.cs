@@ -18,11 +18,17 @@ public class UIServiceAdmin
     }
 
     public ProductPostDTO? Product { get; set; }
+    public ProductPutDTO? ProductPut { get; set; }
     public ColorPostDTO? Color { get; set; }
     public SizePostDTO? Size { get; set; }
 
     public async Task PostDTO<TPostDTO>(TPostDTO inDTO) where TPostDTO : class
     {
         await _productHttp.PostDTO(inDTO);
+    }
+
+    public async Task PutDTO<TPutDTO>(TPutDTO inDTO, int idToUpdate) where TPutDTO : class
+    {
+        await _productHttp.PutDTO(inDTO, idToUpdate);
     }
 }
