@@ -8,14 +8,22 @@
         <ProductPut/>
     </div>
 
-    <ColorPost/>
-    <SizePost />
+    <div style="display: flex;">
+        <ColorPost />
+        <ColorPut />
+    </div>
+
+    <div style="display: flex;">
+        <SizePost />
+        <SizePut />
+    </div>
+
+    
 </CascadingValue>
 
 
 
 @code {
-     [CascadingParameter] public UIServiceAdmin? Service { get; set; }
 
 
 }

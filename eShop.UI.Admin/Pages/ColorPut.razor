@@ -1,18 +1,18 @@
 ﻿<div>
-    <h3>Color Post</h3>
+    <h3>Color Put</h3>
 
-    <EditForm Model="@colorPostDTO" OnValidSubmit="@HandleValidSubmit">
+    <EditForm Model="@colorPutDTO" OnValidSubmit="@HandleValidSubmit">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
         <div class="form-group">
             <label for="property1">Name:</label>
-            <InputText id="property1" @bind-Value="@colorPostDTO.Name" class="form-control" />
+            <InputText id="property1" @bind-Value="@colorPutDTO.Name" class="form-control" />
         </div>
 
         <div class="form-group">
             <label for="property2">OptionType:</label>
-            <InputSelect id="property2" @bind-Value="@colorPostDTO.OptionType" class="form-control">
+            <InputSelect id="property2" @bind-Value="@colorPutDTO.OptionType" class="form-control">
                 @foreach (var option in Enum.GetValues(typeof(OptionType)))
                 {
                     <option value="@option">@option</option>
@@ -22,28 +22,34 @@
 
         <div class="form-group">
             <label for="property3">Hex TextColor:</label>
-            <InputText id="property3" @bind-Value="@colorPostDTO.TextColor" class="form-control" />
+            <InputText id="property3" @bind-Value="@colorPutDTO.TextColor" class="form-control" />
         </div>
 
         <div class="form-group">
             <label for="property4">Hex BGColor:</label>
-            <InputText id="property4" @bind-Value="@colorPostDTO.BGColor" class="form-control" />
+            <InputText id="property4" @bind-Value="@colorPutDTO.BGColor" class="form-control" />
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <label for="idToUpdate">ID to update:</label>
+            <InputNumber id="idToUpdate" @bind-Value="@colorPutDTO.Id" class="form-control" />
+        </div>
 
+
+        <button type="submit" class="btn btn-primary">Submit</button>
     </EditForm>
 </div>
 
 @code {
-    private ColorPostDTO colorPostDTO = new ColorPostDTO();
+    private ColorPutDTO colorPutDTO = new ColorPutDTO();
+    private int idToUpdate;
     [CascadingParameter(Name = "Service")] public UIServiceAdmin Service { get; set; }
 
     private async Task HandleValidSubmit()
     {
         if (Service != null)
         {
-            await Service.PostDTO(colorPostDTO);
+            await Service.PutDTO(colorPutDTO, idToUpdate);
         }
         else
         {

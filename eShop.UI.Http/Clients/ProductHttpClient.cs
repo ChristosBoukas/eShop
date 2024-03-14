@@ -46,7 +46,8 @@ public class ProductHttpClient
             node = node.ToLower();
 
             // Serialize the DTO object to JSON
-            string jsonContent = JsonSerializer.Serialize(inDTO);
+            string jsonContent = JsonSerializer.Serialize(inDTO,
+                new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
             // Create StringContent object with JSON data
             StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -94,13 +95,13 @@ public class ProductHttpClient
             node = node.ToLower();
 
             // Serialize the DTO object to JSON
-            string jsonContent = JsonSerializer.Serialize(inDTO);
+            //string jsonContent = JsonSerializer.Serialize(inDTO);
 
             // Create StringContent object with JSON data
-            StringContent content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+            StringContent content = new (JsonSerializer.Serialize(inDTO), Encoding.UTF8, "application/json");
 
             //Use the relative path, not the base address here
-            string relativePath = $"/api/{node}s/{idToUpdate}";
+            string relativePath = $"{node}s/{idToUpdate}";
             using HttpResponseMessage response = await _httpClient.PutAsync(relativePath, content);
             response.EnsureSuccessStatusCode();
         }

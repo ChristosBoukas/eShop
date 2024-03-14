@@ -1,27 +1,29 @@
-﻿<h3>Size Post</h3>
+﻿<div>
+    <h3>Size Post</h3>
 
-<EditForm Model="@sizePostDTO" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+    <EditForm Model="@sizePostDTO" OnValidSubmit="@HandleValidSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <div class="form-group">
-        <label for="property1">Name:</label>
-        <InputText id="property1" @bind-Value="@sizePostDTO.Name" class="form-control" />
-    </div>
+        <div class="form-group">
+            <label for="property1">Name:</label>
+            <InputText id="property1" @bind-Value="@sizePostDTO.Name" class="form-control" />
+        </div>
 
-    <div class="form-group">
-        <label for="property2">OptionType:</label>
-        <InputSelect id="property2" @bind-Value="@sizePostDTO.OptionType" class="form-control">
-            @foreach (var option in Enum.GetValues(typeof(OptionType)))
-            {
-                <option value="@option">@option</option>
-            }
-        </InputSelect>
-    </div>
+        <div class="form-group">
+            <label for="property2">OptionType:</label>
+            <InputSelect id="property2" @bind-Value="@sizePostDTO.OptionType" class="form-control">
+                @foreach (var option in Enum.GetValues(typeof(OptionType)))
+                {
+                    <option value="@option">@option</option>
+                }
+            </InputSelect>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
 
-</EditForm>
+    </EditForm>
+</div>
 
 @code {
     private SizePostDTO sizePostDTO = new SizePostDTO();
