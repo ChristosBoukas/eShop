@@ -1,32 +1,28 @@
-﻿@* @page "/" *@
-@inject UIService Service;
+﻿@page "/"
+@inject UIService service;
 
-<NavComponent UICartService="Service" />
+<CascadingValue Value="Service" Name="Service">
+ <CascadingValue Value="Service?.Cart" Name="Cart">
 
+    <NavComponentV2 OnChange="OnChange" />
+        @if (Service is not null)
+        {
+            <div id="viewport" class="d-flex vh-100">
+                <ProductMainComponent OnChange="OnChange" />
+             </div>           
+        }
 
-<div id="viewport" class="d-flex vh-100">
-    <CascadingValue Value="Service" Name="Service">
-        <AsideComponent OnChange="OnChange" />
-        <ProductMainComponent OnChange="OnChange" />
-    </CascadingValue>
-</div>
+</CascadingValue>
+</CascadingValue>
 
-@code{
+@code {
+    [CascadingParameter] public UIService? Service { get; set; }
+
+    protected override void OnParametersSet() => Service = service;
+
     void OnChange()
     {
-        
+
     }
 
 }
-
-
-
-@* <MenuComponent />
-<CarouselComponent />
-<CardListComponent /> *@
-
-
-
-
-
-
